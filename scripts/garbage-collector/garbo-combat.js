@@ -21468,7 +21468,7 @@ function intializeExtrovermectinZones() {
 /* harmony export */   "M2": () => (/* binding */ meatFamiliar),
 /* harmony export */   "kZ": () => (/* binding */ timeToMeatify)
 /* harmony export */ });
-/* unused harmony exports freeFightFamiliar, pocketProfessorLectures */
+/* unused harmony exports calculateMeatFamiliar, freeFightFamiliar, pocketProfessorLectures */
 /* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7530);
 /* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(kolmafia__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var libram__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3311);
@@ -21498,21 +21498,24 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+function calculateMeatFamiliar() {
+  var bestLeps = kolmafia__WEBPACK_IMPORTED_MODULE_0__.Familiar.all() // The commerce ghost canot go underwater in most circumstances, and cannot use an amulet coin
+  // We absolutely do not want that
+  .filter(fam => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)(fam) && fam !== (0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject || (_templateObject = _taggedTemplateLiteral(["Ghost of Crimbo Commerce"])))).sort((a, b) => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(b) - (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(a));
+  var bestLepMult = (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(bestLeps[0]);
+  _meatFamiliar = bestLeps.filter(familiar => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(familiar) === bestLepMult).reduce((a, b) => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findFairyMultiplier */ .gK)(a) > (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findFairyMultiplier */ .gK)(b) ? a : b);
+}
 
 var _meatFamiliar;
 
 function meatFamiliar() {
   if (!_meatFamiliar) {
-    if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myInebriety)() > (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.inebrietyLimit)() && (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject || (_templateObject = _taggedTemplateLiteral(["Trick-or-Treating Tot"])))) && (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$item */ .xr)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["li'l pirate costume"]))))) {
-      _meatFamiliar = (0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["Trick-or-Treating Tot"])));
-    } else if ((0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["Robortender"]))))) {
-      _meatFamiliar = (0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["Robortender"])));
+    if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myInebriety)() > (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.inebrietyLimit)() && (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["Trick-or-Treating Tot"])))) && (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$item */ .xr)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["li'l pirate costume"]))))) {
+      _meatFamiliar = (0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["Trick-or-Treating Tot"])));
+    } else if ((0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["Robortender"]))))) {
+      _meatFamiliar = (0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["Robortender"])));
     } else {
-      var bestLeps = kolmafia__WEBPACK_IMPORTED_MODULE_0__.Familiar.all() // The commerce ghost canot go underwater in most circumstances, and cannot use an amulet coin
-      // We absolutely do not want that
-      .filter(fam => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .have */ .lf)(fam) && fam !== (0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$familiar */ .HP)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["Ghost of Crimbo Commerce"])))).sort((a, b) => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(b) - (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(a));
-      var bestLepMult = (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(bestLeps[0]);
-      _meatFamiliar = bestLeps.filter(familiar => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findLeprechaunMultiplier */ .q$)(familiar) === bestLepMult).sort((a, b) => (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findFairyMultiplier */ .gK)(b) - (0,libram__WEBPACK_IMPORTED_MODULE_3__/* .findFairyMultiplier */ .gK)(a))[0];
+      calculateMeatFamiliar();
     }
   }
 
@@ -21733,7 +21736,7 @@ function timeToMeatify() {
 /* harmony export */   "e6": () => (/* binding */ realmAvailable),
 /* harmony export */   "tq": () => (/* binding */ userConfirmDialog)
 /* harmony export */ });
-/* unused harmony exports embezzlerLog, averageTouristNet, expectedEmbezzlerProfit, safeInterrupt, resetDailyPreference, shuffle, mapMonster, argmax, arrayEquals, questStep, tryFeast, coinmasterPrice, kramcoGuaranteed, logMessage, printLog, printHelpMenu, pillkeeperOpportunityCost, burnLibrams, safeRestoreMpTarget, safeRestore, checkGithubVersion, formatNumber, getChoiceOption, steveAdventures */
+/* unused harmony exports embezzlerLog, averageTouristNet, expectedEmbezzlerProfit, safeInterrupt, resetDailyPreference, shuffle, mapMonster, argmax, arrayEquals, questStep, tryFeast, coinmasterPrice, kramcoGuaranteed, logMessage, printLog, printHelpMenu, pillkeeperOpportunityCost, burnLibrams, safeRestoreMpTarget, safeRestore, checkGithubVersion, formatNumber, getChoiceOption, today, garbageTouristRatio, turnsToNC, steveAdventures */
 /* harmony import */ var canadv_ash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2549);
 /* harmony import */ var canadv_ash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(canadv_ash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7530);
@@ -21741,8 +21744,9 @@ function timeToMeatify() {
 /* harmony import */ var libram__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2474);
 /* harmony import */ var libram__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2211);
 /* harmony import */ var libram__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(4782);
+/* harmony import */ var libram__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3311);
 /* harmony import */ var libram__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(678);
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26;
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
@@ -22005,6 +22009,10 @@ function safeRestoreMpTarget() {
   return Math.min(myMaxmp(), 200);
 }
 function safeRestore() {
+  if (have($effect(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["Beaten Up"]))))) {
+    throw new Error("Hey, you're beaten up, and that's a bad thing. Lick your wounds, handle your problems, and run me again when you feel ready.");
+  }
+
   if (myHp() < myMaxhp() * 0.5) {
     restoreHp(myMaxhp() * 0.9);
   }
@@ -22012,8 +22020,8 @@ function safeRestore() {
   var mpTarget = safeRestoreMpTarget();
 
   if (myMp() < mpTarget) {
-    if (have($item(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["Kramco Sausage-o-Matic\u2122"])))) && (have($item(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["magical sausage"])))) || have($item(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["magical sausage casing"]))))) && get("_sausagesEaten") < 23) {
-      eat($item(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["magical sausage"]))));
+    if (have($item(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["Kramco Sausage-o-Matic\u2122"])))) && (have($item(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["magical sausage"])))) || have($item(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["magical sausage casing"]))))) && get("_sausagesEaten") < 23) {
+      eat($item(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["magical sausage"]))));
     } else restoreMp(mpTarget);
   }
 
@@ -22025,7 +22033,7 @@ function checkGithubVersion() {
     var mainBranch = gitBranches.find(branchInfo => branchInfo.name === "main");
     var mainSha = mainBranch && mainBranch.commit ? mainBranch.commit.sha : "CustomBuild";
 
-    if ("2901aa7856beeae05750f33490a926882833728b" === mainSha) {
+    if ("cc84020b161974ccf84fafc0e555bbc359ba2dd1" === mainSha) {
       print("Garbo is up to date!", HIGHLIGHT);
     } else {
       print("Garbo is out of date. Please run 'svn update!", "red");
@@ -22073,7 +22081,21 @@ function userConfirmDialog(msg, defaultValue, timeOut) {
   if (timeOut) return (0,kolmafia__WEBPACK_IMPORTED_MODULE_1__.userConfirm)(msg, timeOut, defaultValue);
   return (0,kolmafia__WEBPACK_IMPORTED_MODULE_1__.userConfirm)(msg);
 }
-var steveAdventures = new Map([[(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["The Haunted Bedroom"]))), [1, 3, 1]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["The Haunted Nursery"]))), [1, 2, 2, 1, 1]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["The Haunted Conservatory"]))), [1, 2, 2]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["The Haunted Billiards Room"]))), [1, 2, 2]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["The Haunted Wine Cellar"]))), [1, 2, 2, 3]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["The Haunted Boiler Room"]))), [1, 2, 2]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["The Haunted Laboratory"]))), [1, 1, 3, 1, 1]]]);
+var today = Date.now() - (0,kolmafia__WEBPACK_IMPORTED_MODULE_1__.gametimeToInt)() - 1000 * 60 * 3.5; // Barf setup info
+
+var olfactionCopies = (0,libram__WEBPACK_IMPORTED_MODULE_6__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$skill */ .tm)(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["Transcendent Olfaction"])))) ? 3 : 0;
+var gallapagosCopies = (0,libram__WEBPACK_IMPORTED_MODULE_6__/* .have */ .lf)((0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$skill */ .tm)(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["Gallapagosian Mating Call"])))) ? 1 : 0;
+var garbageTourists = 1 + olfactionCopies + gallapagosCopies,
+    touristFamilies = 1,
+    angryTourists = 1;
+var barfTourists = garbageTourists + touristFamilies + angryTourists;
+var garbageTouristRatio = garbageTourists / barfTourists;
+var touristFamilyRatio = touristFamilies / barfTourists; // 30 tourists till NC, with families counting as 3
+// Estimate number of turns till the counter hits 27
+// then estimate the expected number of turns required to hit a counter of >= 30
+
+var turnsToNC = 27 * barfTourists / (garbageTourists + angryTourists + 3 * touristFamilies) + 1 * touristFamilyRatio + 2 * (1 - touristFamilyRatio) * touristFamilyRatio + 3 * (1 - touristFamilyRatio) * (1 - touristFamilyRatio);
+var steveAdventures = new Map([[(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["The Haunted Bedroom"]))), [1, 3, 1]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["The Haunted Nursery"]))), [1, 2, 2, 1, 1]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["The Haunted Conservatory"]))), [1, 2, 2]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["The Haunted Billiards Room"]))), [1, 2, 2]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["The Haunted Wine Cellar"]))), [1, 2, 2, 3]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["The Haunted Boiler Room"]))), [1, 2, 2]], [(0,libram__WEBPACK_IMPORTED_MODULE_4__/* .$location */ .PG)(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["The Haunted Laboratory"]))), [1, 1, 3, 1, 1]]]);
 
 /***/ }),
 
@@ -22461,7 +22483,7 @@ function printGarboSession() {
 
   for (var _i2 = 0, _arr2 = [].concat(_toConsumableArray(winners), _toConsumableArray(losers)); _i2 < _arr2.length; _i2++) {
     var detail = _arr2[_i2];
-    print("".concat(detail.quantity, " ").concat(detail.item, " worth ").concat(detail.value, " total"), HIGHLIGHT);
+    print("".concat(detail.quantity, " ").concat(detail.item, " worth ").concat(detail.value.toFixed(0), " total"), HIGHLIGHT);
   }
 
   set("garboResultsMeat", totalMeat);
