@@ -19074,7 +19074,7 @@ new EmbezzlerFight("11-leaf clover (untapped potential)", () => {
     return false;
   }
 
-  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish) return _lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer;
+  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish && !_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer) return false;
   var profit = (potential + 1) * (0,_lib__WEBPACK_IMPORTED_MODULE_5__/* .averageEmbezzlerNet */ .bb)() - (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.mallPrice)((0,libram__WEBPACK_IMPORTED_MODULE_8__/* .$item */ .xr)(_templateObject136 || (_templateObject136 = _taggedTemplateLiteral(["11-leaf clover"]))));
   if (profit < 0) return false;
   (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("You have the following embezzler-sources untapped right now:", _lib__WEBPACK_IMPORTED_MODULE_5__/* .HIGHLIGHT */ .X2);
@@ -19096,7 +19096,7 @@ new EmbezzlerFight("11-leaf clover (untapped potential)", () => {
   var potential = Math.floor(embezzlerCount());
   if (potential < 1) return false;
   if ((0,libram__WEBPACK_IMPORTED_MODULE_9__/* .get */ .U2)("_genieFightsUsed") >= 3) return false;
-  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish) return _lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer;
+  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish && !_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer) return false;
   var profit = (potential + 1) * (0,_lib__WEBPACK_IMPORTED_MODULE_5__/* .averageEmbezzlerNet */ .bb)() - _lib__WEBPACK_IMPORTED_MODULE_5__/* .WISH_VALUE */ .zO;
   if (profit < 0) return false;
   (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("You have the following embezzler-sources untapped right now:", _lib__WEBPACK_IMPORTED_MODULE_5__/* .HIGHLIGHT */ .X2);
@@ -21610,13 +21610,13 @@ new FreeRunFight(() => (0,lib/* have */.lf)((0,template_string/* $item */.xr)(_t
 })];
 
 function sandwormRequirement() {
-  return new maximize/* Requirement */.nb(["100 Item Drop"], (0,lib/* have */.lf)((0,template_string/* $item */.xr)(_templateObject396 || (_templateObject396 = fights_taggedTemplateLiteral(["January's Garbage Tote"])))) && (0,property/* get */.U2)("garbageChampagneCharge") > 0 ? {
+  return maximize/* Requirement.merge */.nb.merge([new maximize/* Requirement */.nb(["100 Item Drop"], (0,lib/* have */.lf)((0,template_string/* $item */.xr)(_templateObject396 || (_templateObject396 = fights_taggedTemplateLiteral(["January's Garbage Tote"])))) && (0,property/* get */.U2)("garbageChampagneCharge") > 0 ? {
     forceEquip: (0,template_string/* $items */.vS)(_templateObject397 || (_templateObject397 = fights_taggedTemplateLiteral(["broken champagne bottle"])))
-  } : {}).merge(new maximize/* Requirement */.nb([], (0,lib/* have */.lf)((0,template_string/* $item */.xr)(_templateObject398 || (_templateObject398 = fights_taggedTemplateLiteral(["Lil' Doctor\u2122 bag"])))) && (0,property/* get */.U2)("_otoscopeUsed") < 3 ? {
+  } : {}), new maximize/* Requirement */.nb([], (0,lib/* have */.lf)((0,template_string/* $item */.xr)(_templateObject398 || (_templateObject398 = fights_taggedTemplateLiteral(["Lil' Doctor\u2122 bag"])))) && (0,property/* get */.U2)("_otoscopeUsed") < 3 ? {
     forceEquip: (0,template_string/* $items */.vS)(_templateObject399 || (_templateObject399 = fights_taggedTemplateLiteral(["Lil' Doctor\u2122 bag"])))
-  } : {}).merge(new maximize/* Requirement */.nb([], (0,familiar/* bestFairy */.Mr)() === (0,template_string/* $familiar */.HP)(_templateObject400 || (_templateObject400 = fights_taggedTemplateLiteral(["Reagnimated Gnome"]))) ? {
+  } : {}), new maximize/* Requirement */.nb([], (0,familiar/* bestFairy */.Mr)() === (0,template_string/* $familiar */.HP)(_templateObject400 || (_templateObject400 = fights_taggedTemplateLiteral(["Reagnimated Gnome"]))) ? {
     forceEquip: (0,template_string/* $items */.vS)(_templateObject401 || (_templateObject401 = fights_taggedTemplateLiteral(["gnomish housemaid's kgnee"])))
-  } : {})));
+  } : {})]);
 }
 
 var freeKillSources = [// 22	3	0	0	Chest X-Ray	combat skill	must have a Lil' Doctor™ bag equipped
@@ -21710,7 +21710,7 @@ function freeFights() {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
           var freeKillSource = _step2.value;
 
-          if (freeKillSource.isAvailable() && (0,property/* get */.U2)("garbageChampagneCharge") > 0) {
+          if (freeKillSource.isAvailable()) {
             // TODO: Add potions that are profitable for free kills.
             (0,lib/* ensureEffect */.pq)((0,template_string/* $effect */._G)(_templateObject453 || (_templateObject453 = fights_taggedTemplateLiteral(["Steely-Eyed Squint"]))));
           }
@@ -22484,7 +22484,7 @@ function voterSetup() {
   var initPriority = new Map([["Meat Drop: +30", 0.3 * ((src_lib/* baseMeat */.Vq + 750) * (0,embezzler/* embezzlerCount */.bs)() + src_lib/* baseMeat */.Vq * ((0,embezzler/* estimatedTurns */.AN)() - (0,embezzler/* embezzlerCount */.bs)()))], ["Item Drop: +15", 0.15 * (4 * 100 * 0.3 * (0,embezzler/* embezzlerCount */.bs)() + 3 * 200 * 0.15 * ((0,embezzler/* estimatedTurns */.AN)() - (0,embezzler/* embezzlerCount */.bs)()))], ["Adventures: +1", src_lib/* globalOptions.ascending */.Xe.ascending ? 0 : (0,property/* get */.U2)("valueOfAdventure")], ["Familiar Experience: +2", 8], ["Monster Level: +10", 5], ["".concat((0,external_kolmafia_.myPrimestat)(), " Percent: +25"), 3], ["Experience (".concat((0,external_kolmafia_.myPrimestat)(), "): +4"), 2], ["Meat Drop: -30", -2], ["Item Drop: -15", -2], ["Familiar Experience: -2", -2]]);
 
   if (!(0,property/* get */.U2)("voteAlways") && !(0,property/* get */.U2)("_voteToday")) {
-    var availableInitiatives = new Map(Object.keys((0,external_kolmafia_.votingBoothInitiatives)((0,external_kolmafia_.myClass)(), (0,external_kolmafia_.myPathId)(), (0,external_kolmafia_.myDaycount)())).map(init => {
+    var availableInitiatives = new Map(Object.keys((0,external_kolmafia_.votingBoothInitiatives)((0,external_kolmafia_.myClass)(), (0,external_kolmafia_.myPath)(), (0,external_kolmafia_.myDaycount)())).map(init => {
       var _initPriority$get;
 
       var val = (_initPriority$get = initPriority.get(init)) !== null && _initPriority$get !== void 0 ? _initPriority$get : 0;
@@ -24739,15 +24739,8 @@ function canContinue() {
 }
 function main() {
   var argString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
-  sinceKolmafiaRevision(26634);
-  (0,external_kolmafia_.print)("".concat("Pantocyclus/garbage-collector", "@").concat("bde1e3560bf90b93da45147709c0ead4a9b5b9c7"));
-  var forbiddenStores = property/* getString */.KF("forbiddenStores").split(",");
-
-  if (!forbiddenStores.includes("3408540")) {
-    // Van & Duffel's Baleet Shop
-    forbiddenStores.push("3408540");
-    (0,property/* set */.t8)("forbiddenStores", forbiddenStores.join(","));
-  }
+  sinceKolmafiaRevision(26713);
+  (0,src_lib/* checkGithubVersion */.ki)();
 
   if ((0,property/* get */.U2)("garbo_autoUserConfirm", false)) {
     (0,external_kolmafia_.print)("I have set auto-confirm to true and accept all ramifications that come with that.", "red");
@@ -24804,7 +24797,6 @@ function main() {
       } else if (arg.match(/yachtzeechain/)) {
         src_lib/* globalOptions.yachtzeeChain */.Xe.yachtzeeChain = true;
       } else if (arg.match(/version/i)) {
-        (0,src_lib/* checkGithubVersion */.ki)();
         return;
       } else if (arg) {
         (0,external_kolmafia_.print)("Invalid argument ".concat(arg, " passed. Run garbo help to see valid arguments."), "red");
@@ -25403,17 +25395,22 @@ function safeRestore() {
 
   burnLibrams(mpTarget * 2); // Leave a mp buffer when burning
 }
+/**
+ * Compares the local version of Garbo against the most recent release branch, printing results to the CLI
+ */
+
 function checkGithubVersion() {
   if (false) {} else {
-    var gitBranches = JSON.parse((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("https://api.github.com/repos/".concat("Pantocyclus/garbage-collector", "/branches")));
-    var mainBranch = gitBranches.find(branchInfo => branchInfo.name === "main");
-    var mainSha = mainBranch && mainBranch.commit ? mainBranch.commit.sha : "CustomBuild";
-
-    if ("bde1e3560bf90b93da45147709c0ead4a9b5b9c7" === mainSha) {
+    if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.gitAtHead)("Loathing-Associates-Scripting-Society-garbage-collector-release")) {
       (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("Garbo is up to date!", HIGHLIGHT);
     } else {
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("Garbo is out of date. Please run 'svn update!", "red");
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("".concat("Pantocyclus/garbage-collector", "/main is at ").concat(mainSha));
+      var _gitBranches$find;
+
+      var gitBranches = JSON.parse((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("https://api.github.com/repos/".concat("Pantocyclus/garbage-collector", "/branches")));
+      var releaseCommit = (_gitBranches$find = gitBranches.find(branchInfo => branchInfo.name === "release")) === null || _gitBranches$find === void 0 ? void 0 : _gitBranches$find.commit;
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("Garbo is out of date. Please run 'git update!'", "red");
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("Local Version: ".concat((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.gitInfo)("Loathing-Associates-Scripting-Society-garbage-collector-release").commit, "."));
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("Release Version: ".concat(releaseCommit, "."));
     }
   }
 }

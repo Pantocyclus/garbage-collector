@@ -16428,7 +16428,7 @@ new EmbezzlerFight("11-leaf clover (untapped potential)", () => {
     return false;
   }
 
-  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish) return _lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer;
+  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish && !_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer) return false;
   var profit = (potential + 1) * (0,_lib__WEBPACK_IMPORTED_MODULE_5__/* .averageEmbezzlerNet */ .bb)() - (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.mallPrice)((0,libram__WEBPACK_IMPORTED_MODULE_8__/* .$item */ .xr)(_templateObject136 || (_templateObject136 = _taggedTemplateLiteral(["11-leaf clover"]))));
   if (profit < 0) return false;
   (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("You have the following embezzler-sources untapped right now:", _lib__WEBPACK_IMPORTED_MODULE_5__/* .HIGHLIGHT */ .X2);
@@ -16450,7 +16450,7 @@ new EmbezzlerFight("11-leaf clover (untapped potential)", () => {
   var potential = Math.floor(embezzlerCount());
   if (potential < 1) return false;
   if ((0,libram__WEBPACK_IMPORTED_MODULE_9__/* .get */ .U2)("_genieFightsUsed") >= 3) return false;
-  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish) return _lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer;
+  if (_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.askedAboutWish */ .Xe.askedAboutWish && !_lib__WEBPACK_IMPORTED_MODULE_5__/* .globalOptions.wishAnswer */ .Xe.wishAnswer) return false;
   var profit = (potential + 1) * (0,_lib__WEBPACK_IMPORTED_MODULE_5__/* .averageEmbezzlerNet */ .bb)() - _lib__WEBPACK_IMPORTED_MODULE_5__/* .WISH_VALUE */ .zO;
   if (profit < 0) return false;
   (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)("You have the following embezzler-sources untapped right now:", _lib__WEBPACK_IMPORTED_MODULE_5__/* .HIGHLIGHT */ .X2);
@@ -17774,17 +17774,22 @@ function safeRestore() {
 
   burnLibrams(mpTarget * 2); // Leave a mp buffer when burning
 }
+/**
+ * Compares the local version of Garbo against the most recent release branch, printing results to the CLI
+ */
+
 function checkGithubVersion() {
   if (false) {} else {
-    var gitBranches = JSON.parse(visitUrl("https://api.github.com/repos/".concat("Pantocyclus/garbage-collector", "/branches")));
-    var mainBranch = gitBranches.find(branchInfo => branchInfo.name === "main");
-    var mainSha = mainBranch && mainBranch.commit ? mainBranch.commit.sha : "CustomBuild";
-
-    if ("bde1e3560bf90b93da45147709c0ead4a9b5b9c7" === mainSha) {
+    if (gitAtHead("Loathing-Associates-Scripting-Society-garbage-collector-release")) {
       print("Garbo is up to date!", HIGHLIGHT);
     } else {
-      print("Garbo is out of date. Please run 'svn update!", "red");
-      print("".concat("Pantocyclus/garbage-collector", "/main is at ").concat(mainSha));
+      var _gitBranches$find;
+
+      var gitBranches = JSON.parse(visitUrl("https://api.github.com/repos/".concat("Pantocyclus/garbage-collector", "/branches")));
+      var releaseCommit = (_gitBranches$find = gitBranches.find(branchInfo => branchInfo.name === "release")) === null || _gitBranches$find === void 0 ? void 0 : _gitBranches$find.commit;
+      print("Garbo is out of date. Please run 'git update!'", "red");
+      print("Local Version: ".concat(gitInfo("Loathing-Associates-Scripting-Society-garbage-collector-release").commit, "."));
+      print("Release Version: ".concat(releaseCommit, "."));
     }
   }
 }
