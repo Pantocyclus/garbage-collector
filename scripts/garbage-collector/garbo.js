@@ -24866,6 +24866,7 @@ var require_lib2 = __commonJS({
     var _templateObject4726;
     var _templateObject4826;
     var _templateObject4926;
+    var _templateObject5026;
     function _slicedToArray49(r, e) {
       return _arrayWithHoles49(r) || _iterableToArrayLimit49(r, e) || _unsupportedIterableToArray96(r, e) || _nonIterableRest49();
     }
@@ -25313,7 +25314,7 @@ var require_lib2 = __commonJS({
         }) && rates[m.name] > 0;
       });
     }
-    exports2.UNPERIDOTABLE_MONSTERS = new Set(_toConsumableArray74((0, kolmafia_1.modifierEval)("G") < 4 ? (0, libram_1.$monsters)(_templateObject4926 || (_templateObject4926 = _taggedTemplateLiteral150(["alielf, cat-alien, dog-alien"]))) : []));
+    exports2.UNPERIDOTABLE_MONSTERS = new Set([].concat(_toConsumableArray74((0, kolmafia_1.modifierEval)("G") < 4 ? (0, libram_1.$monsters)(_templateObject4926 || (_templateObject4926 = _taggedTemplateLiteral150(["alielf, cat-alien, dog-alien"]))) : []), _toConsumableArray74((0, libram_1.$monsters)(_templateObject5026 || (_templateObject5026 = _taggedTemplateLiteral150(["Arizona bark scorpion, swimming pool monster"]))))));
   }
 });
 
@@ -30629,7 +30630,7 @@ function checkGithubVersion() {
       var releaseSHA = (_gitBranches$find = gitBranches.find(function(branchInfo) {
         return branchInfo.name === "release";
       })) === null || _gitBranches$find === void 0 || (_gitBranches$find = _gitBranches$find.commit) === null || _gitBranches$find === void 0 ? void 0 : _gitBranches$find.sha;
-      (0, import_kolmafia100.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("74c76ddf7dedb8eb641448c15bf42eb26ef50917", ")"));
+      (0, import_kolmafia100.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("61d4ec0ec778d63b81d2b4f5e8e6455c9d4c3935", ")"));
       if (releaseSHA === localSHA) {
         (0, import_kolmafia100.print)("Garbo is up to date!", HIGHLIGHT);
       } else if (releaseSHA === void 0) {
@@ -39308,11 +39309,25 @@ function luckyGoldRing(mode) {
   );
   return /* @__PURE__ */ new Map([[$item(_templateObject1056 || (_templateObject1056 = _taggedTemplateLiteral119(["lucky gold ring"]))), sumNumbers(dropValues) / dropValues.length / 10]]);
 }
+function calculateMrCheengsSpectaclesBonus() {
+  var lastAvailableModifier = import_kolmafia130.Modifier.get("Last Available");
+  var possibleDrops = import_kolmafia130.Item.all().filter(function(i) {
+    return i.tradeable && i.discardable && i.potion && (0, import_kolmafia130.stringModifier)(i, lastAvailableModifier) === "";
+  });
+  var dropRate = 0.25;
+  var maxPrice = 1e5;
+  return sum(possibleDrops, function(item15) {
+    return Math.min(garboValue(item15), maxPrice);
+  }) / possibleDrops.length * dropRate;
+}
+var mrCheengsBonus;
 function mrCheengsSpectacles() {
+  var _mrCheengsBonus;
   if (!have($item(_templateObject1151 || (_templateObject1151 = _taggedTemplateLiteral119(["Mr. Cheeng's spectacles"]))))) {
     return /* @__PURE__ */ new Map([]);
   }
-  return /* @__PURE__ */ new Map([[$item(_templateObject1248 || (_templateObject1248 = _taggedTemplateLiteral119(["Mr. Cheeng's spectacles"]))), 220]]);
+  (_mrCheengsBonus = mrCheengsBonus) !== null && _mrCheengsBonus !== void 0 ? _mrCheengsBonus : mrCheengsBonus = calculateMrCheengsSpectaclesBonus();
+  return /* @__PURE__ */ new Map([[$item(_templateObject1248 || (_templateObject1248 = _taggedTemplateLiteral119(["Mr. Cheeng's spectacles"]))), mrCheengsBonus]]);
 }
 function mrScreegesSpectacles() {
   if (!have($item(_templateObject1346 || (_templateObject1346 = _taggedTemplateLiteral119(["Mr. Screege's spectacles"]))))) {
